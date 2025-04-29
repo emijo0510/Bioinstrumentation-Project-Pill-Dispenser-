@@ -14,20 +14,20 @@ void loop() {
   light = analogRead(A5);
   Serial.println(light);  
 
-  if (light > 300) { // if it is bright
+  if (light > 750) { // if it is bright
     digitalWrite(LED_BUILTIN, LOW);   
   }
   else { // if it is dark
     digitalWrite(LED_BUILTIN, HIGH);  
 
-    // Move servo slightly forward
-    pos += 30;              // Move 5 degrees more each time
-    if (pos > 180) {
-      pos = 0;             // Reset back to 0 if we reach the end
-    }
-    myservo.write(pos);    // Move servo to new position
+    myservo.write(-180); // full speed counter clockwise
+    delay(275);         // rotate for 0.5 seconds
+    myservo.write(90);  // stop
+    delay(1000);        // wait
     delay(15);             // small movement delay
   }
 
   delay(500); // wait before next light check
 }
+
+
